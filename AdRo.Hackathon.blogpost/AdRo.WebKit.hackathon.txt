@@ -17,36 +17,96 @@ Prima zi a fost mai mult de familiarizare cu codul și procesele din jurul WebKi
 În cele ce urmează, veți găsi o scurtă descriere pentru fiecare din proiectele realizate în timpul hackathonului, împreună cu screenshot-uri, video-uri și, acolo unde este cazul, link-uri la codul produs.
 
 <h4>Resize event pentru orice element HTML</h4>
-În HTML singurul obiect care aruncă evenimente de tip <em>resize</em> este <code>window</code>. Uneori însă, în layout-uri complexe sau în situații în care conținutul se poate modifica dinamic, codul pentru a detecta schimbări de dimensiune ale elementelor poate fi destul de complicat. Acest prototip adaugă evenimente de tip <<em>resize</em> pe orice element DOM din HTML.
+<img src="Resize.event.png" />
+În HTML singurul obiect care aruncă evenimente de tip <em>resize</em> este <code>window</code>. Uneori însă, în layout-uri complexe sau în situații în care conținutul se poate modifica dinamic, codul pentru a detecta schimbări de dimensiune ale elementelor poate fi destul de complicat. <a href="https://github.com/downloads/webkithacks/webkit/add_Resize_Event_To_All_DOM_Nodes.diff">Prototipul</a> realizat de Mihai Maerean, Cătălin Badea și Mihai Bivol adaugă evenimente de tip <em>resize</em> pe orice element DOM din HTML.
 
 [youtube=http://www.youtube.com/watch?v=k-1kq3amVa0]
 
 <h4>Suport pentru CSS Regions în DRT</h4>
+<img src="DRT_regions.png" />
+<strong>Dump Render Tree</strong> (sau pe scurt DRT) este o componentă din WebKit folosită de frameworkul de testare automată. Folosind DRT, poziția pe ecran și relația elementelor DOM poate fi exportată în format textual sau ca imagini, permițând compararea rezultatelor cu niște valori așteptate, considerate corecte. În cazul CSS regions, pentru elementele care sunt poziționate într-o regiune, această informație nu este expusă de DRT, ceea ce face compararea textuală a rezultatelor imposibilă. <a href="http://cloud.github.com/downloads/webkithacks/webkit/RenderTreeAsText.patch">Patch-ul</a> la care au lucrat Ion Roșca și Cătălin Ușurelu permite folosirea DRT pentru teste de CSS Regions cu rezultat text. De asemenea pentru a putea lucra pe Windows la acest patch, Ion a trebuit să mai rezolve <a href="https://bugs.webkit.org/show_bug.cgi?id=82047">un bug</a>.
+
 [youtube=http://www.youtube.com/watch?v=ErVNZwUZoVY]
 
-<h4>Poziționarea subtitrărilor în &lt;video&gt;</h4>
+<h4>Poziționarea subtitrărilor în &lt;video&gt; (WebVTT)</h4>
+[youtube=http://www.youtube.com/watch?v=tTdleDoXo5o]
+
+Una din specificațiile referitoare la video în HTML 5 este <a href="http://dev.w3.org/html5/webvtt/">WebVTT</a>. WebVTT standardizează modul de tratare și afișare a track-urilor de tip text într-un element &lt;video&gt;, fie că e vorba de subtitrări, <em>close-captions</em> sau orice alt fel de conținut text adăugat peste un element video. Patch-ul lui Victor Cărbune repară unele din problemele de poziționare a textului, asigurându-se că textul este mereu vizibil pe ecran, indiferent unde este el poziționat. 
+
 [youtube=http://www.youtube.com/watch?v=ZcQUCuHmjt0]
 
-<h4>background-clip și background-radius</h4>
+<h4>background-clip și border-radius</h4>
+<img src="background-clip-box.png"/>
+În ultima versiune de Safari, proprietatea <code>background-clip</code> nu este aplicată corect în cazul în care un element are mai multe imagini de fundal și elementul are specificat și <code>border-radius</code> &ndash; <em>aka colțuri rotunjite</em>. Vladimir Grecescu a implementat un fix pentru acest <a href="https://bugs.webkit.org/show_bug.cgi?id=23166">bug</a> dar, după cum spunea și el în prezentare, mai sunt încă niște pași de făcut până ce patch-ul va fi acceptat în trunk-ul WebKit.
+
 [youtube=http://www.youtube.com/watch?v=snhNp0ZoNNc]
 
 <h4>WebInspector bug</h4>
+<a href="https://bugs.webkit.org/show_bug.cgi?id=81925">Un bug</a> destul de sâcâitor în Web Inspector-ul din WebKit apare la editarea regulilor CSS „read-only” (de exemplu cele provenite din style-sheet-ul implicit al browser-ului sau din setările utilizatorului). În mod normal, dublu-click într-o regulă CSS adaugă o nouă pereche proprietate-valoare, care poate fi editată. În cazul anterior însă, dublu-click adaugă o pereche nouă <strong>vidă</strong> care nu poate fi editată. Încercarea de-a o edita cu dublu-click duce la adăugarea a încă o astfel de pereche. Nimic grav, dar destul de sâcâitor. Patch-ul realizat de Vlad Voicu rezolvă acest bug și a fost deja submitat și inclus în trunk-ul de WebKit.
+
 [youtube=http://www.youtube.com/watch?v=Y32huMwU_C4]
 
 <h4>CSS counter-set</h4>
+<img src="counter-set.png"/>
+CSS 2.1 permite un oarecare control asupra contoarelor CSS (folosite de exemplu de listele ordonate) prin proprietățile <code>counter-reset</code> și <code>counter-increment</code>. CSS&nbsp;3 adaugă o proprietate nouă &ndash; <code>counter-set</code> &ndash; pentru mai mult control. Cu toate acestea, <code>counter-set</code> nu este încă implementat în WebKit. <a href="https://github.com/webkithacks/webkit/commit/6767e3fd444482d9bc541bc156c90b6d6d324072">Patch-ul</a> lui Andrian Cucu adaugă suport pentru această proprietate.
+
 [youtube=http://www.youtube.com/watch?v=jm5Q1ap28wY]
 
 <h4>Web Inspector <em>à la</em> «Inventing on principle»</h4>
+Prezentarea lui Bret Victor <a href="http://vimeo.com/36579366">«Inventing on principle»</a> a stârnit multe conversații în jurul instrumentelor de dezvoltare actuale și a celor viitoare. Horia a încercat să prototipeze câteva din ideile din «Inventing on principle» referitoare la editarea vizuală și cu feedback instantaneu de CSS, peste Web Inspector-ul din WebKit. Ce a ieșit, vedeți mai jos :)
+
 [youtube=http://www.youtube.com/watch?v=I9b-6ihcSWE]
 
 <h4>Mouse events în CSS Regions</h4>
+Implementarea curentă de CSS Regions are câteva goluri în zona evenimentelor declanșate de utilizator (mouse events, keyboard events). Unul din ele este faptul că în cazul click-urilor pe conținut poziționat într-o regiune, un dezvoltator JavaScript nu poate afla ușor și direct în ce regiune a fost făcut click-ul în cazul în care conținutul „curge” prin mai multe regiuni. <a href="https://raw.github.com/wiki/webkithacks/webkit/add_region_field_to_mouse_event.patch">Patch-ul</a> lui Alexandru adaugă la evenimentele de mouse declanșate într-o regiune un nou membru, care conține informații despre regiunea în care a fost făcut click-ul.
+
 [youtube=http://www.youtube.com/watch?v=RHlf1jd3iSU]
 
 <h4>Teste pentru CSS Regions</h4>
+Deși regulile pentru submitarea de cod în WebKit cer ca pentru orice nou feature să fie adăugate și teste, de cele mai multe ori testele incluse inițial nu sunt acoperitoare. Așa se face că există o categorie aparte de bug-uri în WebKit, care vizează adăugarea de teste pentru anumite părți dintr-un feature, care nu sunt încă acoperite în suita de teste automate (numită LayoutTests). Eu am lucrat la un astfel de <a href="https://bugs.webkit.org/show_bug.cgi?id=76537">bug</a>, submitând teste care verifică faptul că specificitatea și poziția regulilor CSS sunt respectate când se folosește region styling. Ocazie cu care am descoperit încă un <a href="https://bugs.webkit.org/show_bug.cgi?id=81901">bug</a> în aceeași zonă.
+
 [youtube=http://www.youtube.com/watch?v=W9UJ8Hwu520]
 
-Și încheierea :)
+<h4>Alte demo-uri</h4>
+Deși nu apar înregistrați „pe bandă”, au mai participat și:
+<ul>
+	<li>Andrei Poenaru &ndash; care a lucrat la repararea unor <a href="https://bugs.webkit.org/show_bug.cgi?id=80583">teste</a> de audio și video care erau incorecte</li>
+	<li>Radu Apostoleanu &ndash; care a încercat să adauge un eveniment <code>overflow</code> pe obiectele <code>NamedFlow</code> din CSS Regions.</li>
+	<li>Răzvan Căliman &ndash; care a studiat posibilele interacțiuni dintre Shadow DOM și CSS Regions și cum ar putea fi folosite cele două pentru a create un model mai elegant de folosire a regiunilor. Concluziile celor 3 zile de studiu sunt publice, pe <a href="https://github.com/oslego/shadow-dom-regions/blob/master/Lessons-learned.md ">GitHub</a>.</li>
+	<li>Mihnea Ovidenie și Raul Hudea &ndash; care au ajutat cu sfaturi în orice a însemnat dezvoltare WebKit</li>
+</ul>
+
+Și încheierea de maxim efect :)
 
 [youtube=http://www.youtube.com/watch?v=gWdemNILD4k]
 
 <h3>Ce mai zic și alții</h3>
+Și ca să nu credeți că doar ne lăudăm de unii singuri, mai jos sunt câteva impresii la cald de la participanți:
+
+<blockquote>[...] pe mine m-au bucurat in special oamenii care si-au aratat dedicatia, deschiderea spre comunicare si intelegerea catre cei care nu aveau aceeasi experienta in spate.
+
+Am invatat mai multe despre Webkit si cum este el structurat, m-am lovit de structura implementarii lui (.h, .c, .idl) si toate dependintele care duc la creearea webengine-ului. Am invatat rigoarea in dezvoltarea pe termen lung a unui produs, importanta comment-urilor (care nu prea exista), importanta unui cod usor de inteles si a testelor. 
+
+Cu toate ca a fost prima oara cand m-am lovit de webkit si un objective-c riguros, nici Mihnea si nici Raul nu m-au facut sa ma simt nasol sau ca nu as stii destul in ciuda numarului mare de intrebari pe care l-au primit de la mine. [...]
+
+In concluzie evenimentul a fost unul reusit in mare parte datorita tuturor care au avut o atitudine deschisa si au fost gata sa sara peste orice problema de 32 de bitzi.
+<cite>(Radu Apostoleanu)</cite>
+</blockquote>
+
+<blockquote>Am avut ocazia sa intru in detalii cu Shadow DOM si cum interactioneaza cu CSS Regions. 
+
+Am descoperit cateva limitari ale implementarii noastre pe care le putem corecta din timp. Asta e foarte bine! Shadow DOM are foarte mare potential si cred ca trebuie urmarit indeaproape in perioada urmatoare. 
+
+Ca urmare a hackatonului am publicat un scurt document cu ce am invatat: <a href="https://github.com/oslego/shadow-dom-regions/blob/master/Lessons-learned.md">https://github.com/oslego/shadow-dom-regions/blob/master/Lessons-learned.md</a>. 
+
+Documentul a generat ceva interes in cercurile oamenilor din domeniu. Dimitry Glazkov, initiatorul Shadow DOM si Paul Irish, Google Developer Advocate, au salutat initiativa si au dat mai departe documentul catre followerii lor.
+
+Provocarea a venit din partea documentatiei limitate pentru Shadow DOM. Fiind un feature inca in dezvoltare a trebuit sa ma bazez doar pe LayoutTeste din WebKit si pe specificatia W3C pentru a intelege ce este bug si ce este limitare de implementare.
+<cite>(Răzvan Căliman)</cite>
+</blockquote>
+
+<blockquote>TBD
+	<cite>(Victor Cărbune)</cite>
+</blockquote>
+
+Mulțumim celor care-au participat, celor care au organizat și... să ne vedem la următorul!
