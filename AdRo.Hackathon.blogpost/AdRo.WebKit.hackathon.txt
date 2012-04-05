@@ -31,7 +31,7 @@ Prima zi a fost mai mult de familiarizare cu codul și procesele din jurul WebKi
 <h4>Poziționarea subtitrărilor în &lt;video&gt; (WebVTT)</h4>
 [youtube=http://www.youtube.com/watch?v=tTdleDoXo5o]
 
-Una din specificațiile referitoare la video în HTML 5 este <a href="http://dev.w3.org/html5/webvtt/">WebVTT</a>. WebVTT standardizează modul de tratare și afișare a track-urilor de tip text într-un element &lt;video&gt;, fie că e vorba de subtitrări, <em>close-captions</em> sau orice alt fel de conținut text adăugat peste un element video. Patch-ul lui Victor Cărbune repară unele din problemele de poziționare a textului, asigurându-se că textul este mereu vizibil pe ecran, indiferent unde este el poziționat. 
+Una din specificațiile referitoare la video în HTML 5 este <a href="http://dev.w3.org/html5/webvtt/">WebVTT</a>. WebVTT standardizează modul de tratare și afișare a track-urilor de tip text într-un element &lt;video&gt;, fie că e vorba de subtitrări, <em>close-captions</em> sau orice alt fel de conținut text adăugat peste un element video. Patch-ul lui Victor Cărbune îmbunătățește suportul pentru WebVTT din WebKit, adăugând posibilitatea de-a poziționa corect (și mereu vizibil)  unele din problemele de poziționare a textului, asigurându-se că textul este mereu vizibil pe ecran, indiferent unde este el poziționat. 
 
 [youtube=http://www.youtube.com/watch?v=ZcQUCuHmjt0]
 
@@ -105,7 +105,7 @@ Provocarea a venit din partea documentatiei limitate pentru Shadow DOM. Fiind un
 <cite>(Răzvan Căliman)</cite>
 </blockquote>
 
-<blockquote>TBD
+<blockquote>Hackathon-ul a reprezentat pentru mine o experiență deosebită, întrucât am participat atât ca organizator și mentor, fiind intern Adobe, cât și ca participant la început de drum în privința contribuțiilor în WebKit. Am avut multe lucruri noi de învățat și am fost surprins să văd feature-uri foarte de interesante și complexe dezvoltate într-un interval de timp extrem de scurt. Încă o dată, am înțeles că entuziasmul și perseverența sunt suficiente pentru a mișca lucrurile repede și în direcția potrivită.
 	<cite>(Victor Cărbune)</cite>
 </blockquote>
 
